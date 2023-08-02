@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).send({
     request: {
-      nextUrl: req.headers.referer
+      url: req.url
     }
   });
 };
