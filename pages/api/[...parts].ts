@@ -1,11 +1,17 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('[test] req =', req)
-  res.status(200).send({
-    request: {
-      url: req.url,
-      rawHeaders: req.rawHeaders
-    }
-  });
+export const config = {
+  runtime: "edge",
+};
+
+export default function handler(request: NextRequest) {
+  return NextResponse.json(
+    {
+      request: {
+        nextUrl: request.nextUrl
+      },
+      context: request
+    },
+    { status: 200 }
+  );
 };
